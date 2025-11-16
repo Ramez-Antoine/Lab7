@@ -51,4 +51,15 @@ public class Student extends User {
     public HashMap<String, ArrayList<String>> getProgress() {
         return progress;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+    
+    
+
 }
