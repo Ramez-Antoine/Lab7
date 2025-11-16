@@ -16,7 +16,7 @@ public class AuthService {
     
     public AuthService()
     {
-        users = JsonDatabase.loadUsers();
+        users = JsonDatabaseManager.loadAllUsers();
     }
     
     public User login(String email, String password)
