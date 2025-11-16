@@ -8,9 +8,20 @@ package lab7;
  *
  * @author 20114
  */
-public class Student extends User{
+public class Student extends User {
 
     public Student(String id, String name, String email, String passwordHash) {
         super(id, name, email, passwordHash, "Student");
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+    
+    
+
 }
