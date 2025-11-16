@@ -4,13 +4,16 @@
  */
 package lab7;
 
+
 import java.util.ArrayList;
+
 
 /**
  *
  * @author youssef
  */
 public class Course {
+
     private String courseId;
     private String title;
     private String description;
@@ -66,3 +69,7 @@ public Course(String courseId, String title, String description, String instruct
 
 
  }
+
+    
+
+

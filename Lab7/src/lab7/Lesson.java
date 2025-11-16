@@ -4,13 +4,17 @@
  */
 package lab7;
 
+
 import java.util.ArrayList;
+
+
 
 /**
  *
  * @author youssef
  */
 public class Lesson {
+
     private String lessonId;
     private String title;
     private String content;
@@ -52,4 +56,7 @@ public class Lesson {
     public void removeResource(String resource) {
         resources.remove(resource);
     }
+
+    
+
 }
