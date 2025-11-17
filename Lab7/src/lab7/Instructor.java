@@ -14,18 +14,24 @@ import java.util.UUID;
  */
 public class Instructor extends User {
     private List<Course> createdCourses;
+    
+    
 
     public Instructor(String id, String name, String email, String passwordHash) {
         super(id, name, email, passwordHash, "Instructor");
         this.createdCourses = new ArrayList<Course>();
     }
+
+    public List<Course> getCreatedCourses() {
+        return createdCourses;
+    }
     
-    public Course createCourse(String title, String description, String instructorId) {
-        String courseId = UUID.randomUUID().toString();
+    
+    
+    public void createCourse(String courseId,String title, String description, String instructorId) {
         Course c = new Course(courseId, title, description, instructorId);
         createdCourses.add(c);
         saveCourses();
-        return c;
     }
     
     public void editCourse(String courseId, String newTitle, String newDescription, String newInstructorId) {
