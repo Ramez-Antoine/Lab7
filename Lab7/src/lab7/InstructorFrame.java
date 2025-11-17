@@ -9,11 +9,12 @@ package lab7;
  * @author youssef
  */
 public class InstructorFrame extends javax.swing.JFrame {
-
+    private Instructor instructor;
     /**
      * Creates new form InstructorFrame
      */
-    public InstructorFrame() {
+    public InstructorFrame(Instructor instructor) {
+        this.instructor = instructor;
         initComponents();
     }
 

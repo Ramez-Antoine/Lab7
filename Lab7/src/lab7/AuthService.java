@@ -13,19 +13,20 @@ import java.util.ArrayList;
 
 public class AuthService {
     private ArrayList<User> users;
+    JsonDatabaseManager db = new JsonDatabaseManager(); 
     
     public AuthService()
     {
-        users = JsonDatabaseManager.loadAllUsers();
+        users = db.loadAllUsers();
     }
     
-    public User login(String email, String password)
+    public User login(String email, String password, String role)
     {
         String hashed = HashUtil.hashPassword(password);
         
         for(User u : users)
         {
-            if(u.getEmail().equalsIgnoreCase(email) && u.getPasswordHash().equals(hashed))
+            if(u.getEmail().equalsIgnoreCase(email) && u.getPasswordHash().equals(hashed) && u.getRole().equalsIgnoreCase(role))
                 return u;
         }
         return null;
@@ -51,7 +52,7 @@ public class AuthService {
         
         users.add(newUser);
         
-        JsonDatabase.saveUsers(users);
+        db.saveAllUsers(users);
         
         return true;
     }

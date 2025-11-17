@@ -124,43 +124,46 @@ public class JsonDatabaseManager {
     }
 
     // ------------------------- UPDATE USER -------------------------
-    public void updateUser(Student s) {
-        try {
-            JSONArray arr = new JSONArray(new FileReader(USERS_FILE).readAllBytes());
+    public void saveAllUsers(ArrayList<User> users) {
+    try {
+        JSONArray arr = new JSONArray();
 
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject json = arr.getJSONObject(i);
+        for (User u : users) {
+            JSONObject json = new JSONObject();
+            json.put("id", u.getId());
+            json.put("name", u.getName());
+            json.put("email", u.getEmail());
+            json.put("passwordHash", u.getPasswordHash());
+            json.put("role", u.getRole());
 
-                if (json.getString("id").equals(s.getId())) {
-
-                    // enrolledCourses
-                    JSONArray e = new JSONArray();
-                    for (String course : s.getEnrolledCourses()) {
-                        e.put(course);
-                    }
-                    json.put("enrolledCourses", e);
-
-                    // progress
-                    JSONObject pr = new JSONObject();
-                    for (String courseId : s.getProgress().keySet()) {
-                        JSONArray lessons = new JSONArray();
-                        for (String lid : s.getProgress().get(courseId)) {
-                            lessons.put(lid);
-                        }
-                        pr.put(courseId, lessons);
-                    }
-                    json.put("progress", pr);
+            if (u instanceof Student s) {
+                // enrolled courses
+                JSONArray enrolled = new JSONArray();
+                for (String courseId : s.getEnrolledCourses()) {
+                    enrolled.put(courseId);
                 }
+                json.put("enrolledCourses", enrolled);
+
+                // progress
+                JSONObject prog = new JSONObject();
+                for (String courseId : s.getProgress().keySet()) {
+                    prog.put(courseId, new JSONArray(s.getProgress().get(courseId)));
+                }
+                json.put("progress", prog);
             }
 
-            FileWriter fw = new FileWriter(USERS_FILE);
-            fw.write(arr.toString(4));
-            fw.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            arr.put(json);
         }
+
+        FileWriter fw = new FileWriter(USERS_FILE);
+        fw.write(arr.toString(4));
+        fw.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
 
     // ------------------------- UPDATE COURSE -------------------------
     public void updateCourse(Course c) {
