@@ -27,6 +27,10 @@ public class Lesson {
         this.resources = new ArrayList<>();
     }
 
+    
+    
+    public ArrayList<String> getResources() { return resources; }
+
     public String getLessonId() {
         return lessonId;
     }
@@ -35,11 +39,17 @@ public class Lesson {
         this.title = title;
     }
 
+    
+    
+    public String getTitle() { return title; }
+
+    
     public void setContent(String content) {
         this.content = content;
     }
     
-    
+    public String getContent() { return content; }
+
     
     public Lesson(String lessonId, String title, String content, ArrayList<String> resources) {
         this.lessonId = lessonId;

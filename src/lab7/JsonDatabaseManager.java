@@ -91,7 +91,7 @@ public class JsonDatabaseManager {
                 JSONArray lessonsArr = json.getJSONArray("lessons");
                 for (int j = 0; j < lessonsArr.length(); j++) {
                     JSONObject l = lessonsArr.getJSONObject(j);
-                    c.addLesson(new Lesson(
+                    c.addLessonToCourse(new Lesson(
                             l.getString("lessonId"),
                             l.getString("title"),
                             l.getString("content")
