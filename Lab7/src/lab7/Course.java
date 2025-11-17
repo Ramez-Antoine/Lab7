@@ -4,14 +4,8 @@
  */
 package lab7;
 
-
 import java.util.ArrayList;
 
-
-/**
- *
- * @author youssef
- */
 public class Course {
 
     private String courseId;
@@ -20,10 +14,8 @@ public class Course {
     private String instructorId;
     private ArrayList<Lesson> lessons;
     private ArrayList<Student> students;
-    
 
-
-public Course(String courseId, String title, String description, String instructorId) {
+    public Course(String courseId, String title, String description, String instructorId) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -32,6 +24,7 @@ public Course(String courseId, String title, String description, String instruct
         this.students = new ArrayList<Student>();
     }
 
+    // ----------------- GETTERS -----------------
     public String getCourseId() {
         return courseId;
     }
@@ -48,27 +41,72 @@ public Course(String courseId, String title, String description, String instruct
         return title;
     }
 
-    
+   
+    public String getDescription() {
+        return description;
+    }
 
- public void editCourse(String newTitle, String newDescription, String newInstructorId) {
+    public String getInstructorId() {
+        return instructorId;
+    }
+
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setInstructorId(String instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    
+    public void editCourse(String newTitle, String newDescription, String newInstructorId) {
         if (newTitle != null) this.title = newTitle;
         if (newDescription != null) this.description = newDescription;
         if (newInstructorId != null) this.instructorId = newInstructorId;
     }
- 
- public void viewEnrolledStudents() {
+
+    public void viewEnrolledStudents() {
         System.out.println("Enrolled Students in " + title + ":");
         if (students.isEmpty()) {
             System.out.println("No students enrolled yet.");
         } else {
             for (Student s : students) {
-                System.out.println("- " + s.getUsername() + " (" + s.getUserId() + ")");
+                System.out.println("- " + s.getName() + " (" + s.getId() + ")");
             }
         }
     }
 
+   
 
- }
+    
+    public void addLesson(Lesson lesson) {
+        if (!lessons.contains(lesson)) {
+            lessons.add(lesson);
+        }
+    }
+
+    
+    public void addStudent(Student s) {
+        if (!students.contains(s)) {
+            students.add(s);
+        }
+    }
+
+    
+    public ArrayList<String> getStudentIds() {
+        ArrayList<String> ids = new ArrayList<>();
+        for (Student s : students) {
+            ids.add(s.getId());
+        }
+        return ids;
+    }
+}
+
 
     
 
